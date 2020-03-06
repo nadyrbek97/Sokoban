@@ -1,11 +1,14 @@
-import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Canvas object
+ * this object added to main JFrame
+ * all paintings happens here
+ */
 public class Canvas extends JPanel{
     private Model model;
 
@@ -18,7 +21,14 @@ public class Canvas extends JPanel{
     public Canvas(Model model){
         this.model = model;
         setBackground(Color.black);
-        System.out.println("I am Canvas constructor");
+        // System.out.println("I am Canvas constructor");
+        // add button
+//        JButton button = new JButton("Restart");
+//        button.setBackground(Color.green);
+//        button.setSize(100,50);
+//        button.setLocation(0,0);
+//        this.add(button);
+
         // Files
         File fileNameGamer = new File("src/images/marioDown.png");
         File fileNameWall = new File("src/images/wall.png");
@@ -35,6 +45,15 @@ public class Canvas extends JPanel{
         }
     }
 
+    /**
+     * paint using Graphics object
+     * replace array number with images
+     * 1 - Player
+     * 2 - Wall
+     * 3 - Box
+     * 4 - Target
+     * @param graphics
+     */
     public void paint(Graphics graphics){
         super.paint(graphics);
         graphics.setColor(Color.white);
@@ -48,10 +67,6 @@ public class Canvas extends JPanel{
         for (int i = 0; i < desktop.length; i++) {
             for (int j = 0; j < desktop[i].length; j++) {
                 if(desktop[i][j] == 1){
-//                    graphics.setColor(Color.red);
-//                    graphics.fillRect(x, y, width, height);
-//                    graphics.setColor(Color.white);
-//                    graphics.drawRect(x, y, width, height);
                     graphics.drawImage(imageGamer,x, y, null);
                 } else if(desktop[i][j] == 2){
                     graphics.drawImage(imageWall, x, y, null);

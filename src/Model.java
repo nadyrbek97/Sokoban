@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class Model {
     private Viewer viewer;
     private int[][] desktop;
@@ -8,7 +6,7 @@ public class Model {
 
 
     public Model(Viewer viewer) {
-        System.out.println("I am Model Constructor");
+        // System.out.println("I am Model Constructor");
         this.viewer = viewer;
         desktop = new int[][]{
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -26,12 +24,20 @@ public class Model {
         indexY = 3;
     }
 
+    /**
+     * Getter for desktop 2d array, to paint map for the game
+     * @return
+     */
     public int[][] getDesktop() {
         return desktop;
     }
 
+    /**
+     * This function listens the move directions from controller
+     * @param direction
+     */
     public void move(String direction) {
-        System.out.println(direction);
+        // System.out.println(direction);
         switch (direction) {
             case "Right":
                 moveRight();
@@ -46,7 +52,7 @@ public class Model {
                 moveDown();
                 break;
         }
-        print();
+        // print();
         viewer.update();
     }
 

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicArrowButton;
 
 /**
  * This is out Viewer component
@@ -22,15 +23,17 @@ public class Viewer {
          * This is our main Frame
          */
         JFrame frame = new JFrame("Nadyrbek's 'Sokoban' Game");
-        frame.setSize(800, 800);
+        frame.setSize(650, 700);
         frame.setLocation(200, 0);
         frame.addKeyListener(controller);
         frame.setVisible(true);
         // add canvas to viewer
         frame.add(canvas);
-
     }
 
+    /**
+     * This function updates the state of screen by calling canvas.repaint()
+     */
     public void update(){
         canvas.repaint();
     }
