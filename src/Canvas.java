@@ -30,7 +30,7 @@ public class Canvas extends JPanel{
 //        this.add(button);
 
         // Files
-        File fileNameGamer = new File("src/images/marioDown.png");
+        File fileNameGamer = new File("src/images/marioRight.png");
         File fileNameWall = new File("src/images/wall.png");
         File fileNameTarget = new File("src/images/target.png");
         File fileNameBox = new File("src/images/box.png");
