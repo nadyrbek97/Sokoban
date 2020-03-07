@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicArrowButton;
 
 /**
  * This is out Viewer component
@@ -39,6 +38,9 @@ public class Viewer {
         canvas.repaint();
     }
 
+    /**
+     * Returns main JFrame
+     */
     public JFrame getMyFrame() {
         return frame;
     }

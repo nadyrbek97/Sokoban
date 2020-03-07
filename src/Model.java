@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Model {
     private Viewer viewer;
     private int[][] desktop;
@@ -11,16 +13,23 @@ public class Model {
         // System.out.println("I am Model Constructor");
         this.viewer = viewer;
 
-        levels = new Levels();
-        desktop = levels.nextLevel();
+        levels = new Levels(this.viewer);
+        try {
+            desktop = levels.nextLevel();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        indexX = 4;
-        indexY = 3;
+        // get player initial position
+        int[] playerIndexes = getPlayerIndexes(desktop);
+        indexX = playerIndexes[0];
+        indexY = playerIndexes[1];
 
         initialization();
     }
 
     public void initialization() {
+        System.out.println("I am initialization function");
         int counterFour = 0;
         for(int i = 0; i < desktop.length;i++) {
             for(int j = 0; j < desktop[i].length;j++) {
@@ -52,9 +61,6 @@ public class Model {
             System.out.println();
         }
         System.out.println();
-        System.out.println();
-
-
     }
 
     /**
@@ -91,6 +97,9 @@ public class Model {
         won();
     }
 
+    /**
+     * Prints map's state in console
+     */
     private void print() {
         for (int i = 0; i < desktop.length; i++) {
             for (int j = 0; j < desktop[i].length; j++) {
@@ -101,6 +110,9 @@ public class Model {
         System.out.println();
     }
 
+    /**
+     * Listens to right move
+     */
     private void moveRight() {
         if (desktop[indexX][indexY + 1] == 3) {
             if (desktop[indexX][indexY + 2] == 0 || desktop[indexX][indexY + 2] == 4){
@@ -116,6 +128,9 @@ public class Model {
         }
     }
 
+    /**
+     * Listens to left move
+     */
     private void moveLeft() {
         if (desktop[indexX][indexY - 1] == 3) {
             if (desktop[indexX][indexY - 2] == 0 || desktop[indexX][indexY - 2] == 4){
@@ -131,7 +146,9 @@ public class Model {
         }
     }
 
-
+    /**
+     * Listens to up move
+     */
     private void moveUp() {
         if (desktop[indexX - 1][indexY] == 3) {
             if (desktop[indexX - 2][indexY] == 0 || desktop[indexX - 2][indexY] == 4){
@@ -147,6 +164,9 @@ public class Model {
         }
     }
 
+    /**
+     * Listens to down move
+     */
     private void moveDown() {
         if (desktop[indexX + 1][indexY] == 3) {
             if (desktop[indexX + 2][indexY] == 0 || desktop[indexX + 2][indexY] == 4){
@@ -179,6 +199,9 @@ public class Model {
         }
     }
 
+    /**
+     * Pop up the message that player has won
+     */
     private void won()
     {
         boolean flag = true;
@@ -195,12 +218,33 @@ public class Model {
         }
         if(flag){
             javax.swing.JOptionPane.showMessageDialog(viewer.getMyFrame(), "You won!");
-            desktop = levels.nextLevel();
-            indexX = 4;
-            indexY = 3;
+            try {
+                desktop = levels.nextLevel();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int[] playerIndexes = getPlayerIndexes(desktop);
+            indexX = playerIndexes[0];
+            indexY = playerIndexes[1];
             initialization();
             viewer.update();
         }
 
+    }
+
+    /**
+     * Gets players starting position
+     */
+    private int[] getPlayerIndexes(int[][] map){
+        int[] result = new int[2];
+        for (int i = 0; i < map.length ; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if(map[i][j] == 1){
+                    result[0] = i;
+                    result[1] = j;
+                }
+            }
+        }
+        return result;
     }
 }

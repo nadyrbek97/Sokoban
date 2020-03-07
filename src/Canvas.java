@@ -21,13 +21,6 @@ public class Canvas extends JPanel{
     public Canvas(Model model){
         this.model = model;
         setBackground(Color.black);
-        // System.out.println("I am Canvas constructor");
-        // add button
-//        JButton button = new JButton("Restart");
-//        button.setBackground(Color.green);
-//        button.setSize(100,50);
-//        button.setLocation(0,0);
-//        this.add(button);
 
         // Files
         File fileNameGamer = new File("src/images/marioRight.png");
