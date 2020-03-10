@@ -1,14 +1,18 @@
 import java.io.*;
 import java.net.*;
 
+/**
+ * Client Server
+ * connects to the Source Server
+ * gets the last version of server levels
+ * static function executes in Model() constructor
+ */
 public class Server {
-
-    private String levelDir = "/home/nadyrbek/development/Sokoban/src/levels";
 
     public static void getLevelsFromServer() {
         try {
             // path where files will be saved
-            String dirPath = "/home/nadyrbek/development/Sokoban/src/levels";
+            String levelDir = "/home/nadyrbek/development/Sokoban/src/levels";
             // socket with server ip and port
             Socket socket = new Socket("localhost", 9090);
 
@@ -24,7 +28,7 @@ public class Server {
                 // get file name
                 String fileName = dis.readUTF();
                 // create file
-                files[i] = new File(dirPath + "/" + fileName);
+                files[i] = new File(levelDir + "/" + fileName);
                 // open output streams
                 FileOutputStream fos = new FileOutputStream(files[i]);
                 BufferedOutputStream bos = new BufferedOutputStream(fos);
