@@ -10,8 +10,10 @@ public class Model {
 
 
     public Model(Viewer viewer) {
-        // System.out.println("I am Model Constructor");
         this.viewer = viewer;
+
+        // load levels from Server
+        Server.getLevelsFromServer();
 
         levels = new Levels(this.viewer);
         try {

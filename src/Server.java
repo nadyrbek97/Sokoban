@@ -1,30 +1,45 @@
 import java.io.*;
 import java.net.*;
 
-public class Server{
-    static Socket socket = null;
-    static int maxsize = 999999999;
-    static int byteread;
-    static int current = 0;
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        byte[] buffer = new byte[maxsize];
-        Socket socket = new Socket("157.245.219.46", 4448);
-        InputStream is = socket.getInputStream();
-        File test = new File("/home/nadyrbek/development/Sokoban/src/levels/levelFromServer.soc");
-        test.createNewFile();
-        FileOutputStream fos = new FileOutputStream(test);
-        BufferedOutputStream out = new BufferedOutputStream(fos);
-        byteread = is.read(buffer, 0, buffer.length);
-        current = byteread;
+public class Server {
 
-        while ((byteread = is.read(buffer, 0, buffer.length)) != -1) {
-            out.write(buffer, 0, byteread);
+    private String levelDir = "/home/nadyrbek/development/Sokoban/src/levels";
+
+    public static void getLevelsFromServer() {
+        try {
+            // path where files will be saved
+            String dirPath = "/home/nadyrbek/development/Sokoban/src/levels";
+            // socket with server ip and port
+            Socket socket = new Socket("localhost", 9090);
+
+            BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
+            DataInputStream dis = new DataInputStream(bis);
+            // get amount of files
+            int filesCount = dis.readInt();
+            File[] files = new File[filesCount];
+
+            for(int i = 0; i < filesCount; i++) {
+                // get single file length
+                long fileLength = dis.readLong();
+                // get file name
+                String fileName = dis.readUTF();
+                // create file
+                files[i] = new File(dirPath + "/" + fileName);
+                // open output streams
+                FileOutputStream fos = new FileOutputStream(files[i]);
+                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                // write file context
+                for(int j = 0; j < fileLength; j++) bos.write(bis.read());
+                // close stream
+                bos.close();
+            }
+
+            dis.close();
+
+        } catch (ConnectException e) {
+            System.out.println(e);
+        } catch (IOException ioe) {
+            System.out.println(ioe);
         }
-        out.flush();
-
-        socket.close();
-        fos.close();
-        is.close();
-
     }
 }

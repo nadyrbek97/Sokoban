@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Parser for getting files from files
+ * Parser for getting levels from files
  */
 public class Parser {
 
-    static int[][] parse(String path) throws IOException {
+    public int[][] parse(String path) throws IOException {
         List<String> allLines = Files.readAllLines(Paths.get(path));
 
         int raws = 0;
@@ -45,7 +45,7 @@ public class Parser {
     /**
      * Converts string To integer
      */
-    static int[] stringToIntegerArray(String s) {
+    private int[] stringToIntegerArray(String s) {
         int[] arr = new int[s.length()];
         for (int i = 0; i < s.length(); i++) {
             arr[i] = Character.getNumericValue(s.charAt(i));
