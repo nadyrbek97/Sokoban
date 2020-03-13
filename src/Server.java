@@ -9,12 +9,12 @@ import java.net.*;
  */
 public class Server {
 
-    public static void getLevelsFromServer() {
+    public synchronized static void getLevelsFromServer() {
         try {
             // path where files will be saved
-            String levelDir = "/home/nadyrbek/development/Sokoban/src/levels";
+            String levelDir = "src/levels";
             // socket with server ip and port
-            Socket socket = new Socket("localhost", 9090);
+            Socket socket = new Socket("157.245.219.46", 4445);
 
             BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
             DataInputStream dis = new DataInputStream(bis);

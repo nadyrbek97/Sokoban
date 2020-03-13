@@ -25,22 +25,22 @@ public class Levels {
                 desktop = thirdLevel();
                 break;
             case 4:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/level4.soc");
+                desktop = parser.parse("src/levels/level4.soc");
                 break;
             case 5:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/level5.soc");
+                desktop = parser.parse("src/levels/level5.soc");
                 break;
             case 6:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/level6.soc");
+                desktop = parser.parse("src/levels/level6.soc");
                 break;
             case 7:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/levelFromServer7.soc");
+                desktop = parser.parse("src/levels/levelFromServer7.soc");
                 break;
             case 8:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/levelFromServer8.soc");
+                desktop = parser.parse("src/levels/levelFromServer8.soc");
                 break;
             case 9:
-                desktop = parser.parse("/home/nadyrbek/development/Sokoban/src/levels/levelFromServer9.soc");
+                desktop = parser.parse("src/levels/levelFromServer9.soc");
                 break;
             default:
                 javax.swing.JOptionPane.showMessageDialog(viewer.getMyFrame(), "You've finished all levels, Press ok to start again");

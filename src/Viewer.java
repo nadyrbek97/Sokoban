@@ -6,12 +6,11 @@ import javax.swing.*;
  */
 public class Viewer {
 
-    Canvas canvas;
+    private Canvas canvas;
     /**
      * This is our main Frame
      */
-    JFrame frame = new JFrame("Nadyrbek's 'Sokoban' Game");
-
+    private JFrame frame;
 
     /**
      * We draw our frame in our constructor
@@ -23,6 +22,7 @@ public class Viewer {
         Model model = controller.getModel();
         canvas = new Canvas(model);
 
+        frame = new JFrame("Nadyrbek's 'Sokoban' Game");
         frame.setSize(650, 700);
         frame.setLocation(200, 0);
         frame.addKeyListener(controller);
